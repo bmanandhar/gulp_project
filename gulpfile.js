@@ -1,0 +1,18 @@
+function defaultTask(cb) {
+  // place code for your default task here
+  cb();
+}
+
+exports.default = defaultTask
+
+const { src, dest } = require('gulp');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+
+exports.default = function() {
+  return src('src/*.js')
+    .pipe(babel())
+    .pipe(src('vendor/*.js'))
+    .pipe(uglify())
+    .pipe(dest('output/'));
+}
